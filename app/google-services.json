@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "896115266186",
+    "project_id": "sound-coil-321312",
+    "storage_bucket": "sound-coil-321312.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896115266186:android:8d8cff59571bd3db249373",
+        "android_client_info": {
+          "package_name": "com.example.jigarpractical"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896115266186-rq4mc7n3h51ef5846t7e3v9dltchtmcr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jigarpractical",
+            "certificate_hash": "d6122896142dc39b6dc3bc1151d1436479f04200"
+          }
+        },
+        {
+          "client_id": "896115266186-9r1gj8el9tksjl6ulrkdr10a80na100f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhek9uV5c_4gt90etEiPDGJ5Z9RhTtvjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "896115266186-9r1gj8el9tksjl6ulrkdr10a80na100f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

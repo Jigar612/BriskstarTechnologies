@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Jigar Practical</string>
+
+
+    <!--VALIDATION MESSAGE-->
+    <string name="validation_please_check_your_internet_connection">Please check your internet connection.</string>
+    <string name="validation_something_went_wrong">Something went wrong!</string>
+    <string name="map_api_key">AIzaSyC_cPLCnLl7qBascLaESUiQDKhE06tKGT8</string>
+</resources>

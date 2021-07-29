@@ -1,0 +1,2 @@
+rootProject.name = "Jigar Practical"
+include ':app'
