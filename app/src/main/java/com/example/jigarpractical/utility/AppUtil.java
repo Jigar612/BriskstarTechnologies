@@ -41,7 +41,6 @@ public class AppUtil {
             if (mProgressDialog == null)
                 mProgressDialog = new Dialog(mContext);
 
-            //   mProgressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             mProgressDialog.setCancelable(false);
             mProgressDialog.setCanceledOnTouchOutside(false);
             mProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(mContext.getResources().getColor(R.color.colorTransparent)));
@@ -62,14 +61,4 @@ public class AppUtil {
         if (mProgressDialog != null && mProgressDialog.isShowing())
             mProgressDialog.dismiss();
     }
-
-    public static String getCurrentDate(String DateFormat) {
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(TimeZone.getDefault());
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DateFormat);
-        return simpleDateFormat.format(calendar.getTime());
-    }
-
-
 }
