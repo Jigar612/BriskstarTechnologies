@@ -17,7 +17,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
     String googlePlacesData;
     GoogleMap mMap;
     String url;
-
+    //Near By
     @Override
     protected String doInBackground(Object... params) {
         try {
