@@ -2,17 +2,22 @@ package com.example.jigarpractical.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.jigarpractical.R;
+import com.example.jigarpractical.databinding.ActivityMapBinding;
 import com.example.jigarpractical.helper.GPSManager;
+import com.example.jigarpractical.helper.GetNearbyPlacesData;
 import com.example.jigarpractical.helper.PermissionManager;
 import com.example.jigarpractical.listener.GPSLocationListener;
 import com.example.jigarpractical.listener.PermissionManagerListener;
@@ -42,7 +47,7 @@ public class MapActivity extends FragmentActivity implements
         ResultCallback<LocationSettingsResult> {
     private final String TAG = getClass().getSimpleName();
     private final Context mContext = this;
-    // private ActivityMapBinding binding;
+     private ActivityMapBinding binding;
 
     // private MapView mapView;
     private SupportMapFragment mapFragment;
@@ -58,7 +63,7 @@ public class MapActivity extends FragmentActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        binding = DataBindingUtil.setContentView((Activity) mContext,R.layout.activity_map);
 
         init();
     }
@@ -77,26 +82,34 @@ public class MapActivity extends FragmentActivity implements
         PermissionManager permissionManager = new PermissionManager(this);
         permissionManager.setSinglePermission(Manifest.permission.ACCESS_FINE_LOCATION);
 
+        binding.btnRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+                String url = getUrl(latitude, longitude, "restaurant");
+                Object[] DataTransfer = new Object[2];
+                DataTransfer[0] = mMap;
+                DataTransfer[1] = url;
+                Log.d("onClick", url);
+                GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
+                getNearbyPlacesData.execute(DataTransfer);
+            }
+        });
 
     }
 
-    /*@Override
-    public void onResume() {
-        super.onResume();
-        mapView.onResume();
-    }*/
+    private String getUrl(double latitude, double longitude, String nearbyPlace) {
 
-    /*@Override
-    public void onStart() {
-        super.onStart();
-        mapView.onStart();
+        StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googlePlacesUrl.append("location=" + latitude + "," + longitude);
+        googlePlacesUrl.append("&radius=" + 10000);
+        googlePlacesUrl.append("&type=" + nearbyPlace);
+        googlePlacesUrl.append("&sensor=true");
+        googlePlacesUrl.append("&key=" + "AIzaSyC_cPLCnLl7qBascLaESUiQDKhE06tKGT8");
+        Log.d("getUrl", googlePlacesUrl.toString());
+        return (googlePlacesUrl.toString());
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        mapView.onPause();
-    }*/
 
     @Override
     public void onStop() {
@@ -172,8 +185,8 @@ public class MapActivity extends FragmentActivity implements
     @SuppressLint("MissingPermission")
     private void startLocationUpdates() {
         LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(10000);
+        locationRequest.setInterval(100000);
+        locationRequest.setFastestInterval(100000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null);
     }
