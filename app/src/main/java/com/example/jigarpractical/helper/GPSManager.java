@@ -27,7 +27,6 @@ public class GPSManager {
     private LocationSettingsRequest locationSettingsRequest;
     private final LocationManager locationManager;
     private LocationRequest locationRequest;
-    //private LocationListener locationListener;
 
     public GPSManager(Activity activity) {
         this.activity = activity;
